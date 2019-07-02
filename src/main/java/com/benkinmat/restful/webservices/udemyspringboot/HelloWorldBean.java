@@ -16,5 +16,4 @@ public class HelloWorldBean {
 		this.message = message;
 	}
 	
-
 }
