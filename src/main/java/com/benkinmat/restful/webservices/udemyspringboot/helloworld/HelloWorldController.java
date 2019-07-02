@@ -1,4 +1,4 @@
-package com.benkinmat.restful.webservices.udemyspringboot;
+package com.benkinmat.restful.webservices.udemyspringboot.helloworld;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

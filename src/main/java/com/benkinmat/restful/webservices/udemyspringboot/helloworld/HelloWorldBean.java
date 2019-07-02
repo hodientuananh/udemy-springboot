@@ -1,4 +1,4 @@
-package com.benkinmat.restful.webservices.udemyspringboot;
+package com.benkinmat.restful.webservices.udemyspringboot.helloworld;
 
 public class HelloWorldBean {
 	
