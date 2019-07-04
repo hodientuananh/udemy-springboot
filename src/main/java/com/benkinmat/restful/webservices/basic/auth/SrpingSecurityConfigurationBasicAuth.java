@@ -1,4 +1,4 @@
-package com.benkinmat.restful.webservices.udemyspringboot.basic.auth;
+package com.benkinmat.restful.webservices.basic.auth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
