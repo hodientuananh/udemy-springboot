@@ -1,10 +1,10 @@
-package com.benkinmat.restful.webservices.udemyspringboot;
+package com.benkinmat.restful.webservices.basic.auth;
 
-public class HelloWorldBean {
+public class AuthenticationBean {
 	
 	private String message;
 	
-	public HelloWorldBean(String message) {
+	public AuthenticationBean(String message) {
 		this.setMessage(message);
 	}
 
