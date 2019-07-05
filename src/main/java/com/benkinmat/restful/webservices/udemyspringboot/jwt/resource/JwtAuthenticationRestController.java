@@ -25,7 +25,7 @@ import com.benkinmat.restful.webservices.udemyspringboot.jwt.JwtTokenUtil;
 import com.benkinmat.restful.webservices.udemyspringboot.jwt.JwtUserDetails;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://benkinmat.github.io"})
 public class JwtAuthenticationRestController {
 
   @Value("${jwt.http.request.header}")
