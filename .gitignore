@@ -44,3 +44,6 @@ buildNumber.properties
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 >>>>>>> 36bdb8c48143a43a10a6863a7a0fd1788cdae82e
+
+### logs file ###
+/logs
