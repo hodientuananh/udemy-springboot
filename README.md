@@ -41,5 +41,5 @@ $ heroku open
 ```
 ### Access live web
 Use the following web for access service
-https://<app-name>.herokuapp.com
-example: https://world-contribution.herokuapp.com/
+https://app-name.herokuapp.com
+example: https://udemy-springboot.herokuapp.com/

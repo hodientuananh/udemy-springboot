@@ -58,13 +58,16 @@
 		    <groupId>org.projectlombok</groupId>
 		    <artifactId>lombok</artifactId>
 		    <scope>provided</scope>
-		</dependency>
-		 
+		</dependency>	 
 		  <dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
 		    <scope>provided</scope>
 		  </dependency>
+		  <dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		</dependency>		 
 		 
 		  <!-- Exclude any jul-to-slf4j -->
 		  <dependency>
