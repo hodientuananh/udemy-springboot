@@ -1,96 +1,45 @@
-# How to deploy to Google App Engine
+# How to deploy to Heroku Server
 
 ## Setup Standard Environment
-### Exclude tomcat web server
-For using the standard environment of google app engine, firstly is disable the tomcat servlet embedded in spring boot project since google
-app engine use Jetty as web server.
+### Get source code
+Make sure you have Java and Maven installed.  Also, install the [Heroku CLI](https://cli.heroku.com/).
+```sh
+$ git clone https://github.com/benkinmat/udemy-springboot.git
+$ cd udemy-springboot
+$ mvn install
+$ heroku local:start
+```
+Your app should now be running on [localhost:5000](http://localhost:5000/).
+### Config default port for tomcat
+In order to binding port from heroku server to default configuration port, we set up default port to application.properties
 The following change for pom.xml
 ```xml
-...
-<packaging>war</packaging>
-...
-<dependencies>
-  <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-    <exclusions>
-      <exclusion>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-tomcat</artifactId>
-      </exclusion>
-    </exclusions>
-  </dependency>
- 
-  <dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>javax.servlet-api</artifactId>
-    <scope>provided</scope>
-  </dependency>
- 
-  <!-- Exclude any jul-to-slf4j -->
-  <dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>jul-to-slf4j</artifactId>
-    <scope>provided</scope>
-  </dependency>
-..
+server.port=${PORT:5000}
 ```
-### Add app engine configuration
-Add `appengine-web.xml` to directory `src/main/webapp/WEB-INF`
-```xml
-<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-  <threadsafe>true</threadsafe>
-  <runtime>java8</runtime>
-  <system-properties>
-    <property name="java.util.logging.config.file" value="WEB-INF/classes/logging.properties"/>
-  </system-properties>
-</appengine-web-app>
+### Config Procfile for finding target jar file
+Add following in Procfile
+```file
+web: java $JAVA_OPTS -jar target/*.jar --p $PORT
 ```
-### Add app engine maven plugin for requirement
-Add to `pom.xml` following code
-```xml
-<build>
-  <plugins>
-    ...
-    <plugin>
-      <groupId>com.google.cloud.tools</groupId>
-      <artifactId>appengine-maven-plugin</artifactId>
-      <version>1.3.2</version>
-      <configuration>
-        <version>1</version>
-      </configuration>
-    </plugin>
-  </plugins>
-</build>
+### Specific java 1.8 runtime
+Add following in system.properties
+```file
+java.runtime.version=1.8
 ```
-### Add `SpringBootServletInitializer` implementation
-```java
-public class ServletInitializer extends SpringBootServletInitializer {
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(MyGoogleAppEnginePlanetApplication.class);
-    }
-}
+### Deploy to heroku
+#### If no application
+```sh
+$ heroku create
+$ git push heroku master
+$ heroku open
 ```
-### Pull source code from release branch
-In the App engine of desired project, choose google console, then pull the source code from github
-```git
-git clone https://github.com/benkinmat/udemy-springboot.git
-```
-Checkout the release branch
-```git
-git checkout release/google_1.0.0
-```
-If your code have not exist this branch, you must pull the new source code
-```git
-git pull
-```
-### Deploy the app engine
-To make it real, use command
-```
-mvn -DskipTests appengine:deploy
+#### If have exists application
+```sh
+$ heroku git:remote -a app-name
+$ git push heroku master
+$ heroku open
 ```
 ### Access live web
 Use the following web for access service
-http://<project-name>.appspot.com
-example: http://world-contribution.appspot.com
+https://<app-name>.herokuapp.com
+example: https://world-contribution.herokuapp.com/
