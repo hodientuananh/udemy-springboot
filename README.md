@@ -43,3 +43,12 @@ $ heroku open
 Use the following web for access service
 https://app-name.herokuapp.com
 example: https://udemy-springboot.herokuapp.com/
+### Prepare database
+When you use default mysql add-in on app, you should config connector for using
+#### Add dependency to pom.xml
+```xml
+<dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+</dependency>	
+```
