@@ -23,9 +23,6 @@ public class TodoJpaResource {
 	@Autowired
 	private TodoJpaRepository todoJpaRepository;
 	
-	@Autowired
-	private TodoHardCodedService todoService;
-	
 	@GetMapping("/jpa/users/{username}/todos")
 	public List<Todo> getAllTodos(@PathVariable String username){
 		return todoJpaRepository.findByUsername(username);

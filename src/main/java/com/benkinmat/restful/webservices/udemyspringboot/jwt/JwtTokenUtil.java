@@ -69,6 +69,8 @@ public class JwtTokenUtil implements Serializable {
   private String doGenerateToken(Map<String, Object> claims, String subject) {
     final Date createdDate = clock.now();
     final Date expirationDate = calculateExpirationDate(createdDate);
+    
+    System.out.println("secret: " + secret);
 
     return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(createdDate)
         .setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, secret).compact();
